@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI in Clinical Trials — 3D Knowledge Sphere (Demo)</title>
+<style>
+  :root {
+    --teal: #6ff0e2;
+    --ink: #ece8ff;
+    --muted: #9c92c9;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:
+      radial-gradient(1200px 700px at 80% -10%, rgba(93,45,196,0.5), transparent 60%),
+      radial-gradient(900px 600px at 5% 110%, rgba(0,150,160,0.28), transparent 55%),
+      linear-gradient(160deg, #150a30 0%, #0a0618 100%);
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 5;
+    padding: 18px 24px 14px;
+    background: linear-gradient(180deg, rgba(10,6,24,0.75), transparent);
+    pointer-events: none;
+  }
+  header .brand {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); font-weight: 700; margin-bottom: 6px;
+  }
+  header h1 { margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -0.5px; }
+  header h1 span { color: var(--teal); }
+  header p { margin: 6px 0 0; font-size: 13px; color: var(--muted); max-width: 640px; }
+
+  canvas { display: block; width: 100vw; height: 100vh; cursor: grab; }
+  canvas.dragging { cursor: grabbing; }
+
+  /* legend */
+  .legend {
+    position: fixed; left: 24px; bottom: 22px; z-index: 5;
+    display: flex; flex-direction: column; gap: 8px;
+    background: rgba(20,12,44,0.6); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 14px 16px; backdrop-filter: blur(8px);
+  }
+  .legend h4 { margin: 0 0 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .legend .row { display: flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600; }
+  .legend .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; box-shadow: 0 0 10px currentColor; }
+  .legend .sep { height: 1px; background: rgba(255,255,255,0.1); margin: 4px 0; }
+  .legend .small { font-size: 11px; color: var(--muted); font-weight: 500; line-height: 1.5; }
+
+  /* controls hint */
+  .hint {
+    position: fixed; right: 24px; bottom: 22px; z-index: 5;
+    background: rgba(20,12,44,0.6); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 10px 14px; backdrop-filter: blur(8px);
+    font-size: 12px; color: var(--muted); text-align: right; line-height: 1.7;
+  }
+  .hint b { color: var(--ink); }
+
+  /* tooltip */
+  #tip {
+    position: fixed; z-index: 10; pointer-events: none; display: none;
+    max-width: 300px; background: rgba(16,9,36,0.95);
+    border: 1px solid rgba(111,240,226,0.4); border-radius: 12px;
+    padding: 12px 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    transform: translate(14px, 14px);
+  }
+  #tip .tt-kind { font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 800; margin-bottom: 5px; }
+  #tip .tt-title { font-size: 15px; font-weight: 800; margin-bottom: 8px; line-height: 1.25; }
+  #tip .tt-stat { font-size: 12.5px; color: #d6cffb; margin: 3px 0; display: flex; gap: 8px; }
+  #tip .tt-stat b { color: #fff; }
+  #tip .tt-bar { height: 6px; border-radius: 4px; background: rgba(255,255,255,0.12); margin-top: 2px; overflow: hidden; }
+  #tip .tt-bar > i { display: block; height: 100%; border-radius: 4px; }
+
+  .err {
+    position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+    text-align: center; padding: 40px; font-size: 15px; color: #ffb4b4;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">Interactive Knowledge Graph · Prototype</div>
+    <h1>AI in Clinical Trials — <span>3D Knowledge Sphere</span></h1>
+    <p>Every organization and every theme, arranged on a rotating sphere. Links show which institutions cover which topics; node size encodes weight, and brighter/larger themes are validated across more organizations (cross-validation). Drag to rotate · hover to inspect.</p>
+  </header>
+
+  <canvas id="c"></canvas>
+
+  <div class="legend" id="legend">
+    <h4>Organization type</h4>
+    <!-- category rows injected -->
+    <div class="sep"></div>
+    <div class="row"><span class="dot" style="color:#6ff0e2;background:#6ff0e2"></span> Theme (topic)</div>
+    <div class="small">Node size = weight (documents / coverage).<br>Theme brightness = cross-validation strength.</div>
+  </div>
+
+  <div class="hint">
+    <div><b>Drag</b> — rotate the sphere</div>
+    <div><b>Hover</b> — highlight relations</div>
+    <div><b>Click</b> — pin / unpin a node</div>
+  </div>
+
+  <div id="tip"></div>
+  <div class="err" id="err">Could not load <b>data.js</b>. Open this file in the same folder as <code>data.js</code>.</div>
+
+  <script src="data.js"></script>
+  <script>
+  (function () {
+    var DATA = window.DATA;
+    if (!DATA || !DATA.organizations) {
+      document.getElementById("err").style.display = "flex";
+      return;
+    }
+
+    // ---- category palette (mirrors the main site) ----
+    var CATEGORY = {
+      regulator:   { label: "Regulator",           color: "#3aa0ff" },
+      cro:         { label: "Clinical Research",    color: "#00c2b2" },
+      consultancy: { label: "Consultancy",          color: "#9a6bff" },
+      consortium:  { label: "Industry Consortium",  color: "#e0a52e" },
+      research:    { label: "Market Research",      color: "#9aa0c9" },
+      other:       { label: "Other",                color: "#8a84a0" }
+    };
+
+    function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+    function catOf(o){ return CATEGORY[o.category] || CATEGORY.other; }
+    function avg(d){ var s=d.scores; if(!s) return null; var v=[s.impact,s.rigor,s.foresight].filter(function(x){return typeof x==="number";}); if(!v.length) return null; return v.reduce(function(a,b){return a+b;},0)/v.length; }
+
+    // ---- build graph ----
+    var orgs = DATA.organizations;
+    var themes = DATA.themes || [];
+    var themeById = {}; themes.forEach(function(t){ themeById[t.id]=t; });
+
+    // theme coverage & weight
+    var themeCover = {};   // themeId -> Set(orgId)
+    var themeDocs = {};    // themeId -> doc count
+    var themeScore = {};   // themeId -> summed avg score
+    orgs.forEach(function(o){
+      (o.documents||[]).forEach(function(d){
+        (d.topics||[]).forEach(function(tid){
+          (themeCover[tid] = themeCover[tid] || {})[o.id] = 1;
+          themeDocs[tid] = (themeDocs[tid]||0)+1;
+          var a = avg(d); if(a!=null) themeScore[tid] = (themeScore[tid]||0)+a;
+        });
+      });
+    });
+    function coverCount(tid){ return Object.keys(themeCover[tid]||{}).length; }
+
+    // nodes
+    var nodes = [];
+    var nodeIndex = {};
+    orgs.forEach(function(o){
+      var docs=(o.documents||[]);
+      var n = {
+        id:"org:"+o.id, kind:"org", ref:o,
+        label:o.short||o.name, color:catOf(o).color,
+        weight: docs.length,
+        r: 6 + docs.length*1.1
+      };
+      nodeIndex[n.id]=nodes.length; nodes.push(n);
+    });
+    themes.forEach(function(t){
+      var cc = coverCount(t.id);
+      if(cc===0) return; // skip themes nobody covers
+      var n = {
+        id:"theme:"+t.id, kind:"theme", ref:t,
+        label:t.label, color:"#6ff0e2",
+        weight: cc, docs: themeDocs[t.id]||0, cover: cc,
+        r: 5 + cc*1.6,
+        fs: 11 + cc*1.7
+      };
+      nodeIndex[n.id]=nodes.length; nodes.push(n);
+    });
+
+    // edges: org -> theme
+    var edges = [];
+    var adj = {};
+    function link(a,b){ (adj[a]=adj[a]||{})[b]=1; (adj[b]=adj[b]||{})[a]=1; }
+    orgs.forEach(function(o){
+      var perTheme={};
+      (o.documents||[]).forEach(function(d){ (d.topics||[]).forEach(function(tid){ perTheme[tid]=(perTheme[tid]||0)+1; }); });
+      Object.keys(perTheme).forEach(function(tid){
+        var aId="org:"+o.id, bId="theme:"+tid;
+        if(nodeIndex[bId]==null) return;
+        edges.push({ a:nodeIndex[aId], b:nodeIndex[bId], w:perTheme[tid], color:catOf(o).color });
+        link(aId,bId);
+      });
+    });
+
+    // ---- positions on a Fibonacci sphere ----
+    var N = nodes.length;
+    var golden = Math.PI * (3 - Math.sqrt(5));
+    nodes.forEach(function(n,i){
+      var y = 1 - (i/(N-1))*2;
+      var rad = Math.sqrt(Math.max(0,1-y*y));
+      var th = i*golden;
+      n.x = Math.cos(th)*rad; n.y = y; n.z = Math.sin(th)*rad;
+    });
+
+    // ---- rendering ----
+    var canvas = document.getElementById("c");
+    var ctx = canvas.getContext("2d");
+    var tip = document.getElementById("tip");
+    var DPR = Math.min(window.devicePixelRatio||1, 2);
+    var W,H,cx,cy,R;
+
+    function resize(){
+      W = canvas.clientWidth; H = canvas.clientHeight;
+      canvas.width = W*DPR; canvas.height = H*DPR;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      cx = W/2; cy = H/2 + 20;
+      R = Math.min(W,H)*0.34;
+    }
+    window.addEventListener("resize", resize); resize();
+
+    var ax = -0.3, ay = 0.2;      // rotation angles
+    var vax = 0, vay = 0.0016;    // angular velocity (auto spin)
+    var dragging=false, lastX=0, lastY=0;
+    var hoverId=null, pinnedId=null;
+
+    canvas.addEventListener("mousedown", function(e){ dragging=true; lastX=e.clientX; lastY=e.clientY; canvas.classList.add("dragging"); });
+    window.addEventListener("mouseup", function(){ dragging=false; canvas.classList.remove("dragging"); });
+    window.addEventListener("mousemove", function(e){
+      if(dragging){
+        var dx=e.clientX-lastX, dy=e.clientY-lastY; lastX=e.clientX; lastY=e.clientY;
+        vay = dx*0.005; vax = dy*0.005;   // applied in the animation loop
+      }
+      mouseX = e.clientX; mouseY = e.clientY;
+    });
+    // touch
+    canvas.addEventListener("touchstart", function(e){ if(e.touches[0]){ dragging=true; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; } }, {passive:true});
+    window.addEventListener("touchend", function(){ dragging=false; });
+    window.addEventListener("touchmove", function(e){ if(dragging&&e.touches[0]){ var dx=e.touches[0].clientX-lastX, dy=e.touches[0].clientY-lastY; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; vay=dx*0.005; vax=dy*0.005; mouseX=e.touches[0].clientX; mouseY=e.touches[0].clientY; } }, {passive:true});
+
+    canvas.addEventListener("click", function(){
+      pinnedId = (hoverId && pinnedId===hoverId) ? null : hoverId;
+    });
+
+    var mouseX=-999, mouseY=-999;
+    var proj = new Array(N);
+
+    function rotate(n){
+      var cosY=Math.cos(ay), sinY=Math.sin(ay), cosX=Math.cos(ax), sinX=Math.sin(ax);
+      var x1=n.x*cosY - n.z*sinY, z1=n.x*sinY + n.z*cosY, y1=n.y;
+      var y2=y1*cosX - z1*sinX, z2=y1*sinX + z1*cosX, x2=x1;
+      return {x:x2,y:y2,z:z2};
+    }
+    var PD = 2.7; // perspective distance
+    function project(p){
+      var sc = PD/(PD - p.z);
+      return { sx: cx + p.x*R*sc, sy: cy + p.y*R*sc, depth:(p.z+1)/2, sc:sc };
+    }
+
+    function activeId(){ return pinnedId || hoverId; }
+
+    function frame(){
+      // physics
+      if(!dragging){
+        ay += vay; ax += vax;
+        // ease back to gentle auto-spin
+        vay += (0.0016 - vay)*0.03;
+        vax += (0 - vax)*0.05;
+      } else {
+        ay += vay; ax += vax; vay*=0.9; vax*=0.9;
+      }
+      ax = Math.max(-1.3, Math.min(1.3, ax));
+
+      ctx.clearRect(0,0,W,H);
+
+      // project all
+      for(var i=0;i<N;i++){ var r=rotate(nodes[i]); proj[i]=project(r); proj[i].z=r.z; }
+
+      var act = activeId();
+      var actIdx = act!=null ? nodeIndex[act] : null;
+      var neigh = act!=null ? (adj[act]||{}) : null;
+
+      // ---- edges ----
+      ctx.lineCap="round";
+      for(var e=0; e<edges.length; e++){
+        var ed=edges[e], pa=proj[ed.a], pb=proj[ed.b];
+        var na=nodes[ed.a], nb=nodes[ed.b];
+        var isHot = act!=null && (na.id===act || nb.id===act);
+        var dep = (pa.depth+pb.depth)/2;
+        if(act!=null && !isHot){
+          ctx.strokeStyle = "rgba(150,140,200,"+(0.03*dep)+")";
+          ctx.lineWidth = 0.6;
+        } else if(isHot){
+          ctx.strokeStyle = hexA(ed.color, 0.55+0.35*dep);
+          ctx.lineWidth = 1 + ed.w*0.7;
+        } else {
+          ctx.strokeStyle = hexA(ed.color, 0.06+0.10*dep);
+          ctx.lineWidth = 0.6 + ed.w*0.25;
+        }
+        ctx.beginPath(); ctx.moveTo(pa.sx,pa.sy); ctx.lineTo(pb.sx,pb.sy); ctx.stroke();
+      }
+
+      // ---- nodes (sorted back-to-front) ----
+      var order = []; for(var k=0;k<N;k++) order.push(k);
+      order.sort(function(a,b){ return proj[a].z - proj[b].z; });
+
+      // hit testing (nearest to mouse among front-ish)
+      var bestId=null, bestD=24;
+      for(var oi=0; oi<order.length; oi++){
+        var idx=order[oi], n=nodes[idx], p=proj[idx];
+        var faded = act!=null && idx!==actIdx && !(neigh && neigh[n.id]);
+        var alpha = (0.35 + 0.65*p.depth) * (faded?0.18:1);
+        var size = (n.kind==="org") ? n.r*p.sc : Math.max(2.5, n.r*0.6*p.sc);
+
+        if(n.kind==="org"){
+          // glow dot
+          ctx.beginPath();
+          ctx.fillStyle = hexA(n.color, alpha);
+          ctx.shadowColor = n.color; ctx.shadowBlur = faded?0:14*p.depth;
+          ctx.arc(p.sx,p.sy,size,0,Math.PI*2); ctx.fill();
+          ctx.shadowBlur=0;
+          // ring
+          ctx.lineWidth=1.4; ctx.strokeStyle=hexA("#ffffff", alpha*0.6);
+          ctx.beginPath(); ctx.arc(p.sx,p.sy,size,0,Math.PI*2); ctx.stroke();
+          // label
+          if(p.depth>0.45 || idx===actIdx || (neigh&&neigh[n.id])){
+            ctx.font = "700 "+(11*p.sc).toFixed(1)+"px -apple-system, Segoe UI, sans-serif";
+            ctx.fillStyle = hexA("#ffffff", alpha);
+            ctx.textAlign="center"; ctx.textBaseline="middle";
+            ctx.fillText(n.label, p.sx, p.sy+size+9*p.sc);
+          }
+        } else {
+          // theme = word-cloud text, size by weight
+          var fs = n.fs*p.sc;
+          ctx.font = "800 "+fs.toFixed(1)+"px -apple-system, Segoe UI, sans-serif";
+          ctx.textAlign="center"; ctx.textBaseline="middle";
+          var bright = 0.55 + 0.45*(n.cover/6);
+          ctx.shadowColor = "#6ff0e2"; ctx.shadowBlur = faded?0:(10*p.depth*bright);
+          ctx.fillStyle = hexA(mix("#bff8f0","#6ff0e2", n.cover/6), alpha);
+          ctx.fillText(shortTheme(n.label), p.sx, p.sy);
+          ctx.shadowBlur=0;
+        }
+
+        // hit test
+        var dxm=mouseX-p.sx, dym=mouseY-p.sy, dd=Math.sqrt(dxm*dxm+dym*dym);
+        var hitR = (n.kind==="org"? size+6 : fsHit(n,p)) ;
+        if(dd < hitR && dd < bestD){ bestD=dd; bestId=n.id; }
+      }
+      hoverId = bestId;
+
+      // tooltip
+      showTip(activeId());
+
+      requestAnimationFrame(frame);
+    }
+
+    function fsHit(n,p){ return Math.max(14, (n.fs*p.sc)*0.6); }
+    function shortTheme(s){ return s.length>26 ? s.slice(0,24)+"\u2026" : s; }
+
+    function showTip(id){
+      if(!id){ tip.style.display="none"; return; }
+      var n = nodes[nodeIndex[id]];
+      var html="";
+      if(n.kind==="org"){
+        var o=n.ref, c=catOf(o), docs=(o.documents||[]);
+        var themesCovered = {}; docs.forEach(function(d){(d.topics||[]).forEach(function(t){themesCovered[t]=1;});});
+        html = '<div class="tt-kind" style="color:'+c.color+'">'+esc(c.label)+'</div>'+
+               '<div class="tt-title">'+esc(o.name)+'</div>'+
+               '<div class="tt-stat">Documents <b>'+docs.length+'</b></div>'+
+               '<div class="tt-stat">Themes covered <b>'+Object.keys(themesCovered).length+'</b></div>';
+      } else {
+        var t=n.ref;
+        html = '<div class="tt-kind" style="color:#6ff0e2">Theme · cross-validation</div>'+
+               '<div class="tt-title">'+esc(t.label)+'</div>'+
+               '<div class="tt-stat">Covered by <b>'+n.cover+'</b> organizations</div>'+
+               '<div class="tt-stat">Total documents <b>'+n.docs+'</b></div>'+
+               '<div class="tt-bar"><i style="width:'+Math.round(n.cover/maxCover*100)+'%;background:#6ff0e2"></i></div>';
+      }
+      tip.innerHTML = html;
+      tip.style.display="block";
+      var tw=tip.offsetWidth, th=tip.offsetHeight;
+      var x=mouseX, y=mouseY;
+      if(x+tw+30>window.innerWidth) x = window.innerWidth - tw - 30;
+      if(y+th+30>window.innerHeight) y = window.innerHeight - th - 30;
+      tip.style.left=x+"px"; tip.style.top=y+"px";
+    }
+
+    var maxCover = Math.max.apply(null, nodes.filter(function(n){return n.kind==="theme";}).map(function(n){return n.cover;}).concat([1]));
+
+    // color helpers
+    function hexA(hex, a){
+      hex=hex.replace("#",""); if(hex.length===3){hex=hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];}
+      var r=parseInt(hex.slice(0,2),16), g=parseInt(hex.slice(2,4),16), b=parseInt(hex.slice(4,6),16);
+      return "rgba("+r+","+g+","+b+","+Math.max(0,Math.min(1,a)).toFixed(3)+")";
+    }
+    function mix(h1,h2,t){
+      t=Math.max(0,Math.min(1,t));
+      function rgb(h){h=h.replace("#","");return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+      var a=rgb(h1), b=rgb(h2);
+      var r=Math.round(a[0]+(b[0]-a[0])*t), g=Math.round(a[1]+(b[1]-a[1])*t), bl=Math.round(a[2]+(b[2]-a[2])*t);
+      return "#"+[r,g,bl].map(function(v){return ("0"+v.toString(16)).slice(-2);}).join("");
+    }
+
+    // legend categories present
+    (function(){
+      var present={}; orgs.forEach(function(o){ present[o.category||"other"]=1; });
+      var order=["regulator","cro","consultancy","consortium","research","other"];
+      var wrap=document.getElementById("legend");
+      var anchor=wrap.querySelector(".sep");
+      order.filter(function(k){return present[k];}).forEach(function(k){
+        var c=CATEGORY[k]||CATEGORY.other;
+        var row=document.createElement("div");
+        row.className="row";
+        row.innerHTML='<span class="dot" style="color:'+c.color+';background:'+c.color+'"></span> '+esc(c.label);
+        wrap.insertBefore(row, anchor);
+      });
+    })();
+
+    requestAnimationFrame(frame);
+  })();
+  </script>
+</body>
+</html>
