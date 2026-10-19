@@ -451,7 +451,7 @@ window.DATA = {
         {
           id: "ema-annex22-genai-workshop-report",
           title: "Multistakeholder Workshop on Expert Contributions to AI Guidance Development (GMP Annex 22) — Report",
-          url: "https://www.ema.europa.eu/en/documents/report/report-multistakeholder-workshop-expert-contributions-artificial-intelligence-guidance-development-annex-22_en.pdf",
+          url: "https://www.ema.europa.eu/en/events/good-manufacturing-practice-multistakeholder-workshop-expert-contributions-artificial-intelligence-guidance-development-annex-22",
           type: "Workshop Report",
           status: "consultation",
           publishedAt: "2026-10-02",
@@ -460,6 +460,7 @@ window.DATA = {
           scores: { impact: 4, rigor: 3, foresight: 5 },
           topics: ["regulatory", "gcp", "genai"],
           history: [
+            { date: "2026-10-19", type: "update", note: "Hub link set to the EMA workshop event page (Documents section hosts the October 2026 report PDF); direct document/PDF URLs failed to open from some corporate browsers." },
             { date: "2026-10-02", type: "publish", note: "Workshop report published on the EMA event page. Concludes that a broad range of AI uses could be acceptable in GMP-regulated work subject to robust, risk-based validation and oversight, and hands the themes, common approaches and points of divergence to the Annex 22 drafting group." },
             { date: "2026-06-30", type: "consultation", note: "Two-day workshop held: an open expert session on 30 June followed by a closed Annex 22 drafting-group session on 1 July 2026, organised with EMA's Quality Innovation Group." },
             { date: "2025-07", type: "consultation", note: "Draft Annex 22 released for public consultation with revised Annex 11 and Chapter 4; the draft limited critical GMP use to static, deterministic models. Consultation closed in October 2025 after roughly 1,300 comments." }
