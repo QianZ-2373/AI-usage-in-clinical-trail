@@ -1,0 +1,20 @@
+﻿Link reconciliation — 2026-10-19 (Desktop canonical copy)
+Legend: HTTP status from Invoke-WebRequest with browser User-Agent unless noted.
+
+FIXED IN data.js (now 200/202):
+- FDA org + several FDA docs → Federal Register / GovDelivery (fda.gov returned 404 from Sanofi network)
+- nmpa-patient-centered-triple → CDE official notice (Lexology 403)
+- eclinm-ai-trials-evidence-gaps → doi.org/10.1016/j.eclinm.2026.104196 (Lancet fulltext often blocks bots)
+- NEW: ema-ai-focused-group-oct-2026 PDF → 200
+- NEW: iqvia-life-science-models → 200
+- cluepoints centralized monitoring → 200 with User-Agent (plain curl had timed out)
+
+STILL EXPECTED TO FAIL AUTOMATED FETCH (often OK in browser / US VPN):
+- www.fda.gov/* (corporate network block; use mirrors above or US access for PDFs)
+- www.mckinsey.com/* (000 timeout)
+- www.bcg.com/* (403)
+- www.fortunebusinessinsights.com/* (403)
+- www.nmpa.gov.cn/ (412)
+- Some EMA PDFs may need User-Agent; verified 200 with browser UA on spot checks
+
+Prior full curl pass retained in git history / earlier session; re-run locally if needed.

@@ -45,9 +45,84 @@
  * Dates known only to the year are too coarse to place and never qualify.
  */
 window.DATA = {
-  lastCheckedAt: "2026-08-26",
+  lastCheckedAt: "2026-10-19",
 
   refreshLog: [
+    {
+      date: "2026-10-19",
+      windowStart: "2026-08-27",
+      themesAdded: [],
+      added: [
+        { doc: "nrco-ai-augmentation-oncology-trials", note: "Peer-reviewed line between AI that augments trial operations today and AI meant to replace evidence generation — still lacking prospective validation." },
+        { doc: "tufts-medable-monitoring-agent-enpv", note: "Tufts CSDD / Medable eNPV estimate for an AI monitoring agent ($7.5M–$21M per program); vendor-supplied inputs, not yet peer reviewed." },
+        { doc: "iqvia-predictive-clinical-development", note: "IQVIA's commercial launch of an agentic, end-to-end predictive development offering — a CRO-scale bet on orchestrated AI across startup, recruitment, cleaning and phase transitions." },
+        { doc: "mhra-national-ai-commission-recommendations", note: "The UK's 44 final recommendations for a proportionate, lifecycle-based AI-in-healthcare framework; government accepted all on 6 October and MHRA committed to change-management draft guidance by December 2026." },
+        { doc: "eclinm-ai-trials-evidence-gaps", note: "Independent Lancet eClinicalMedicine synthesis distinguishing AI-as-intervention from AI-for-trial-operations and mapping evidence gaps against ICH E6(R3) and FDA-EMA principles." },
+        { doc: "pmda-genai-samd-review-points", note: "Japan's first draft review framework for generative-AI program medical devices, pairing pre-market property-based testing with mandatory post-market performance monitoring." },
+        { doc: "mck-ai-drug-discovery-what-matters-most", note: "McKinsey's September 2026 counter-narrative: AI deals and timelines compress discovery, but clinical failure still tracks target validation — investment has concentrated on molecule design, not the harder biology problem." },
+        { doc: "rm-ai-in-clinical-trials-market-2040", note: "A fourth market sizing extending the forecast to 2040 ($2.09B in 2026 to $18.62B, 17% CAGR), widening the spread among published estimates tracked in the hub." },
+        { doc: "ema-annex22-genai-workshop-report", note: "First EU workshop output on admitting generative AI into GMP under layered, risk-based controls — signals how Annex 22 may evolve beyond the 2025 draft's ban on LLMs in critical use." },
+        { doc: "iqvia-life-science-models", note: "IQVIA's purpose-built life-science model suite for protocol simulation, digital twins and outcome prediction — extends Predictive Clinical Development with NVIDIA Nemotron and AWS-backed models." },
+        { doc: "ema-ai-focused-group-oct-2026", note: "October 2026 HMA-EMA industry dialogue summary: ongoing glossary work, Annex 22 revision, Biotech Act guidance duties, and industry asks for operational templates beyond high-level principles." }
+      ],
+      updated: [
+        {
+          doc: "fda-ai-regulatory-decision-draft",
+          change: "Still draft as of 19 October 2026; hub link points to the Federal Register availability notice (fda.gov guidance pages may be unreachable on some corporate networks). ICH M15 final (June 2026) remains the nearest binding modelling framework naming AI/ML.",
+          entries: ["2026-10"]
+        },
+        {
+          doc: "fda-ai-early-phase-pilot-rfi",
+          change: "No FDA follow-up published by 19 October 2026 — no comment summary, pilot roster, or start date beyond the April RFI and June comment extension.",
+          entries: ["2026-10"]
+        },
+        {
+          doc: "fda-good-ai-practice-principles",
+          change: "Hub link set to FDA's GovDelivery announcement of the joint FDA-EMA principles (accessible where fda.gov HTML/PDF endpoints are blocked).",
+          entries: ["2026-10"]
+        },
+        {
+          doc: "nmpa-gcp-revision-e6r3",
+          change: "CDE's companion Guiding Principles for Computerised Systems and Electronic Data (2026 No. 44, 22 September) added to the trajectory — the operative computerised-system layer for AI-enabled trial tools under China's E6(R3)-aligned GCP.",
+          entries: ["2026-09-22"]
+        },
+        {
+          doc: "nmpa-ai-drug-regulation",
+          change: "NMPA posted an official English policy interpretation (20 August), making the 2030/2035 milestones directly citable for international sponsors.",
+          entries: ["2026-08-20"]
+        },
+        {
+          doc: "mhra-national-ai-commission-evidence",
+          change: "Evidence phase closed when final recommendations landed on 10 September; this entry remains the supporting research base.",
+          entries: ["2026-09-10"]
+        },
+        {
+          doc: "mhra-ai-airlock",
+          change: "Phase 3 applications opened on 6 October alongside the government's acceptance of all 44 Commission recommendations.",
+          entries: ["2026-10-06"]
+        },
+        {
+          doc: "mhra-national-ai-commission-recommendations",
+          change: "Government response (6 October) accepted all 44 recommendations; MHRA committed to draft change-management guidance by December 2026 and AI Airlock Phase 3 opened the same day.",
+          entries: ["2026-10-06"]
+        },
+        {
+          doc: "ema-fda-good-ai-practice",
+          change: "EMA AI topic page update (14 August) added regulators' peer-reviewed research-priorities article behind the joint principles.",
+          entries: ["2026-08-14"]
+        },
+        {
+          doc: "nmpa-patient-centered-triple",
+          change: "Link replaced with CDE's official 2023 No. 44 notice (Lexology mirror returned HTTP 403 from automated checks).",
+          entries: ["2026-10-19"]
+        },
+        {
+          doc: "eclinm-ai-trials-evidence-gaps",
+          change: "Primary link switched to the DOI resolver (stable open-access entry point; Lancet full-text URL often blocks automated fetch).",
+          entries: ["2026-10-19"]
+        }
+      ]
+    },
     {
       date: "2026-08-26",
       windowStart: "2026-06-28",
@@ -193,12 +268,12 @@ window.DATA = {
       domain: "fda.gov",
       category: "regulator",
       intro: "The U.S. regulator for drugs and biologics; issues the guidance and frameworks that shape how AI is used in regulated drug development.",
-      url: "https://www.fda.gov/about-fda/center-drug-evaluation-and-research-cder/artificial-intelligence-drug-development",
+      url: "https://www.federalregister.gov/documents/search?conditions%5Bagencies%5D%5B0%5D=food-and-drug-administration&conditions%5Bterm%5D=artificial+intelligence+drug&order=newest",
       documents: [
         {
           id: "fda-ai-drug-manufacturing",
           title: "Artificial Intelligence in Drug Manufacturing",
-          url: "https://www.fda.gov/media/165743/download",
+          url: "https://www.federalregister.gov/documents/2023/03/16/2023-05423/artificial-intelligence-in-drug-manufacturing-discussion-paper-and-request-for-feedback",
           type: "Discussion Paper",
           status: "consultation",
           publishedAt: "2023-03",
@@ -213,7 +288,7 @@ window.DATA = {
         {
           id: "fda-aiml-discussion-paper",
           title: "Using Artificial Intelligence & Machine Learning in the Development of Drug & Biological Products (Discussion Paper)",
-          url: "https://www.fda.gov/media/167973/download",
+          url: "https://www.federalregister.gov/documents/2023/05/11/2023-09985/using-artificial-intelligence-and-machine-learning-in-the-development-of-drug-and-biological",
           type: "Discussion Paper",
           status: "consultation",
           publishedAt: "2023-05",
@@ -222,14 +297,14 @@ window.DATA = {
           scores: { impact: 5, rigor: 4, foresight: 4 },
           topics: ["regulatory", "rd-productivity"],
           history: [
-            { date: "2025-02", type: "update", note: "Revised version reflecting 800+ public comments; sharpened framing on human-led governance, transparency/explainability and lifecycle risk management of AI/ML models." },
+            { date: "2025-02", type: "update", note: "Revised PDF (February 2025) reflecting 800+ public comments; full text at https://www.fda.gov/media/167973/download — hub link is the 2023 Federal Register availability notice for network environments that block fda.gov/media." },
             { date: "2023-05", type: "publish", note: "Initial discussion paper published and public docket opened; outlined AI/ML use across the lifecycle and posed questions on standards, governance and transparency." }
           ]
         },
         {
           id: "fda-ai-medical-products-collaboration",
           title: "Artificial Intelligence and Medical Products: How CBER, CDER, CDRH, and OCP are Working Together",
-          url: "https://www.fda.gov/media/177030/download",
+          url: "https://content.govdelivery.com/attachments/USFDA/2024/03/15/file_attachments/2815628/omp_aimedicalproducts_final_240313%20%281%29.pdf",
           type: "Agency Paper",
           status: "final",
           publishedAt: "2024-03",
@@ -245,15 +320,16 @@ window.DATA = {
         {
           id: "fda-ai-regulatory-decision-draft",
           title: "Considerations for the Use of Artificial Intelligence to Support Regulatory Decision-Making for Drug and Biological Products (Draft Guidance)",
-          url: "https://www.hhs.gov/guidance/document/considerations-use-artificial-intelligence-support-regulatory-decision-making-drug-and",
+          url: "https://www.federalregister.gov/documents/2025/01/07/2024-31542/considerations-for-the-use-of-artificial-intelligence-to-support-regulatory-decision-making-for-drug",
           type: "Draft Guidance",
           status: "consultation",
           publishedAt: "2025-01-07",
-          updatedAt: "2026-08",
-          summary: "FDA's first draft guidance on using AI models in drug/biologics development. Introduces a risk-based credibility assessment framework (7-step) and the 'context of use (COU)' concept, spanning nonclinical, clinical, post-marketing and manufacturing phases. Still draft (non-binding, not for implementation) as of August 2026.",
+          updatedAt: "2026-10",
+          summary: "FDA's first draft guidance on using AI models in drug/biologics development. Introduces a risk-based credibility assessment framework (7-step) and the 'context of use (COU)' concept, spanning nonclinical, clinical, post-marketing and manufacturing phases. Still draft (non-binding, not for implementation) as of October 2026.",
           scores: { impact: 5, rigor: 4, foresight: 5 },
           topics: ["regulatory", "gcp", "harmonization"],
           history: [
+            { date: "2026-10", type: "update", note: "Status re-checked in October 2026: draft guidance (docket FDA-2024-D-4689) remains 'not for implementation' with no finalisation date. ICH M15 final (June 2026) is the nearest binding modelling framework naming AI/ML. Hub link uses the Federal Register availability notice because fda.gov guidance endpoints returned HTTP 404 from Sanofi network checks; the authoritative PDF remains on fda.gov for US access." },
             { date: "2026-08", type: "update", note: "Status check: the document remains draft guidance, explicitly 'not for implementation' and non-binding. Finalization has been anticipated since the comment period closed but had not occurred as of August 2026, so the 7-step credibility framework is still a recommendation rather than a requirement." },
             { date: "2026-01-14", type: "update", note: "Complemented (not replaced) by the joint FDA-EMA Guiding Principles of Good AI Practice in Drug Development, which raise the same themes — risk-based management, context of use, data governance, lifecycle monitoring — at a transatlantic, cross-jurisdictional level." },
             { date: "2025-04", type: "consultation", note: "Public comment period closed. FDA noted the draft was informed by an expert workshop, 800+ comments on the 2023 discussion paper and its own review of 500+ submissions containing AI components between 2016 and 2023." },
@@ -263,7 +339,7 @@ window.DATA = {
         {
           id: "fda-good-ai-practice-principles",
           title: "Guiding Principles of Good AI Practice in Drug Development (joint FDA-EMA)",
-          url: "https://www.fda.gov/about-fda/center-drug-evaluation-and-research-cder/artificial-intelligence-drug-development",
+          url: "https://content.govdelivery.com/accounts/USFDA/bulletins/4042e31",
           type: "Guiding Principles",
           status: "final",
           publishedAt: "2026-01-14",
@@ -272,6 +348,7 @@ window.DATA = {
           scores: { impact: 5, rigor: 4, foresight: 5 },
           topics: ["regulatory", "gcp", "harmonization"],
           history: [
+            { date: "2026-10", type: "update", note: "Hub link set to FDA's GovDelivery announcement of the joint principles (PDF remains at fda.gov/media/189581 and on EMA's mirror PDF)." },
             { date: "2026-01-14", type: "publish", note: "FDA and EMA jointly published the ten principles, framed as a concrete outcome of renewed EU-U.S. cooperation on emerging health technologies. The EU-side drafting group comprised 15 representatives of the European Medicines Regulatory Network. Aim: reduce regulatory fragmentation and give developers a common early set of expectations." }
           ]
         },
@@ -282,11 +359,12 @@ window.DATA = {
           type: "Request for Information",
           status: "consultation",
           publishedAt: "2026-04-29",
-          updatedAt: "2026-06-29",
+          updatedAt: "2026-10",
           summary: "FDA's Federal Register request for input on a proposed pilot programme testing whether AI-enabled tools can improve the efficiency, speed and quality of decision-making in early-phase trials — the stage FDA itself calls a critical bottleneck, marked by high uncertainty, small populations and slow go/no-go calls. Named targets: trial efficiency, safety monitoring, dose selection and better-informed early go/no-go decisions (including whether a Phase 1 study may proceed). The pilot will recruit sponsors with applications before CDER, CBER and the Oncology Center of Excellence, is coordinated by the Deputy Chief Medical Officer in the Office of the Commissioner, and will be guided by principles aligned to the NIST AI Risk Management Framework. Significant because it moves FDA from writing expectations about sponsors' AI to operating AI-assisted review workflows itself. Docket FDA-2026-N-4390; 91 FR 23100.",
           scores: { impact: 4, rigor: 3, foresight: 5 },
           topics: ["regulatory", "protocol-design", "data-mgmt", "rd-productivity"],
           history: [
+            { date: "2026-10", type: "update", note: "October 2026 reconciliation: still no Federal Register follow-up, comment summary, selected sponsors or pilot start date. FDA's April 2026 press release had anticipated final selection criteria in July and pilot selections in August; neither materialised publicly by mid-October, so the RFI text remains the operative reference." },
             { date: "2026-06-29", type: "consultation", note: "Extended comment period closed. As of late August 2026 FDA had not published a summary of comments, a participant list, a start date or any follow-up notice, so the pilot's scope remains as proposed — the docket is the thing to watch for next steps." },
             { date: "2026-05-28", type: "update", note: "FDA published a comment-period extension notice, moving the deadline out from the initial 30 days." },
             { date: "2026-04-29", type: "publish", note: "RFI published in the Federal Register (91 FR 23100-23102, Docket FDA-2026-N-4390), opening a 30-day comment period and soliciting operational as well as algorithm-validation input." }
@@ -303,7 +381,7 @@ window.DATA = {
       domain: "ema.europa.eu",
       category: "regulator",
       intro: "The European Union's medicines regulator; sets expectations for AI/ML across the medicinal product lifecycle.",
-      url: "https://www.ema.europa.eu/en/about-us/how-we-work/big-data/artificial-intelligence",
+      url: "https://www.ema.europa.eu/en/about-us/how-we-work/data-regulation-big-data-other-sources/artificial-intelligence",
       documents: [
         {
           id: "ema-reflection-paper-ai",
@@ -369,6 +447,39 @@ window.DATA = {
           history: [
             { date: "2026-02-04", type: "consultation", note: "Focused-group meeting held with industry stakeholders. EMA noted that guidance work will begin before the Biotech Act is formally adopted, and that a roadmap and revised guidance-development processes will be explored in light of the proposed legal requirements." }
           ]
+        },
+        {
+          id: "ema-annex22-genai-workshop-report",
+          title: "Multistakeholder Workshop on Expert Contributions to AI Guidance Development (GMP Annex 22) — Report",
+          url: "https://www.ema.europa.eu/en/documents/report/report-multistakeholder-workshop-expert-contributions-artificial-intelligence-guidance-development-annex-22_en.pdf",
+          type: "Workshop Report",
+          status: "consultation",
+          publishedAt: "2026-10-02",
+          updatedAt: "2026-10-02",
+          summary: "Report of EMA's GMP/GDP Inspectors Working Group workshop (30 June - 1 July 2026) convened to reconsider how draft EU GMP Annex 22 treats generative AI, large language models and other probabilistic or adaptive models. The 2025 consultation draft barred such models from critical GMP applications; the consultation responses signalled support for enabling them under controls, so the drafting group sought expert input on guardrails. Across six topics, participants backed layered, risk-based controls rather than outright exclusion: risk assessment that weighs detectability, model influence, autonomy and novelty alongside severity and probability; human reviewers who understand the model principles, process, output and decision context well enough to challenge the AI; documented escalation and contingency pathways; supplier oversight; and periodic review to keep a demonstrable state of control. Technical examples should stay outside the main body or be non-prescriptive. The outcomes feed the ongoing revision of Annex 22; no final text or adoption date has been announced. Relevant beyond manufacturing because it is the EU's first worked view of how generative AI could be admitted into a GxP-critical process.",
+          scores: { impact: 4, rigor: 3, foresight: 5 },
+          topics: ["regulatory", "gcp", "genai"],
+          history: [
+            { date: "2026-10-02", type: "publish", note: "Workshop report published on the EMA event page. Concludes that a broad range of AI uses could be acceptable in GMP-regulated work subject to robust, risk-based validation and oversight, and hands the themes, common approaches and points of divergence to the Annex 22 drafting group." },
+            { date: "2026-06-30", type: "consultation", note: "Two-day workshop held: an open expert session on 30 June followed by a closed Annex 22 drafting-group session on 1 July 2026, organised with EMA's Quality Innovation Group." },
+            { date: "2025-07", type: "consultation", note: "Draft Annex 22 released for public consultation with revised Annex 11 and Chapter 4; the draft limited critical GMP use to static, deterministic models. Consultation closed in October 2025 after roughly 1,300 comments." }
+          ]
+        },
+        {
+          id: "ema-ai-focused-group-oct-2026",
+          title: "HMA-EMA Focused Group on AI with Industry Stakeholders — October 2026 Summary Notes",
+          url: "https://www.ema.europa.eu/en/documents/report/summary-notes-hma-ema-group-focused-ai-industry-stakeholders-october-2026_en.pdf",
+          type: "Meeting Summary",
+          status: "consultation",
+          publishedAt: "2026-10-14",
+          updatedAt: "2026-10-14",
+          summary: "Summary notes from the 5 October 2026 virtual meeting of the HMA-EMA group focused on AI with industry stakeholders, published 14 October. Continues the February roadmap dialogue: FDA-EMA guiding principles and ongoing terminology/glossary harmonisation; MWP workplan items on AI in clinical development and PRAC-joint pharmacovigilance Q&A; Annex 22 revision after ~1,300 comments with final text still expected by end of 2026; and Biotech Act provisions that would make several AI guidance streams legally binding. Industry associations (EFPIA, EuropaBio, EUCOPE, AESGP, AnimalhealthEurope, Europharm SMC) reiterated needs for operational guidance — templates, checklists, proportionate risk tiers for SMEs — and clarity on generative AI in submissions, transparency when AI-generated content is used, and boundaries versus SaMD frameworks.",
+          scores: { impact: 4, rigor: 3, foresight: 5 },
+          topics: ["regulatory", "gcp", "harmonization", "genai"],
+          history: [
+            { date: "2026-10-14", type: "publish", note: "Summary notes and agenda PDFs posted on the EMA event page for the 5 October 2026 online session (NDSG workplan 2025-2028)." },
+            { date: "2026-10-05", type: "consultation", note: "Focused-group meeting with industry stakeholders held online under NDSG co-chairs; registration by invitation." }
+          ]
         }
       ]
     },
@@ -390,18 +501,19 @@ window.DATA = {
           type: "Implementation Opinions",
           status: "final",
           publishedAt: "2026-04-02",
-          updatedAt: "2026-04-02",
+          updatedAt: "2026-08-20",
           summary: "NMPA's overarching policy for embedding AI across the entire drug regulatory lifecycle (evaluation and approval, supervision and inspection, testing and surveillance). Sets milestones to build an integrated 'AI + drug regulation' system by 2030 and a digital-intelligence-driven safety governance model by 2035, including high-quality datasets, vertical large models and intelligent agents.",
           scores: { impact: 4, rigor: 3, foresight: 5 },
           topics: ["regulatory", "rd-productivity"],
           history: [
+            { date: "2026-08-20", type: "update", note: "NMPA published an official English-language policy interpretation (english.nmpa.gov.cn), restating the 2030 milestone — high-quality datasets, vertical large models and intelligent agents applied across review and approval, inspection, testing and surveillance, and government services — and the 2035 goal of digital-intelligence-driven, agile drug safety governance. No new obligations; it makes the policy directly citable for non-Chinese sponsors." },
             { date: "2026-04-02", type: "publish", note: "NMPA issued the Implementation Opinions (four parts: overall requirements, key digital-intelligence regulatory scenarios, foundational support, and organizational implementation) outlining seven priority directions and five foundational tasks for AI-enabled regulation." }
           ]
         },
         {
           id: "nmpa-patient-centered-triple",
           title: "Patient-Centered Drug Clinical Trial Guiding Principles — \"Triple Release\" (Design, Implementation, Benefit–Risk Assessment)",
-          url: "https://www.lexology.com/library/detail.aspx?g=4fa461d8-ebde-4246-8699-833d1dd74097",
+          url: "https://www.cde.org.cn/main/news/viewInfoCommon/42c008e28f7004cd19b73949142380bd",
           type: "Guiding Principles",
           status: "final",
           publishedAt: "2023-07-27",
@@ -435,11 +547,12 @@ window.DATA = {
           type: "Regulation",
           status: "final",
           publishedAt: "2026-05-21",
-          updatedAt: "2026-09-01",
+          updatedAt: "2026-09-22",
           summary: "China's revised GCP, aligned with the internationally agreed ICH E6(R3), issued as Announcement 2026 No. 50 (dated 21 May 2026, released 8 June 2026) and repealing the 2020 No. 57 announcement. Relevant to AI because E6(R3) reframes trial conduct around risk-proportionate quality by design, data governance across the full data lifecycle, and fitness-for-purpose expectations for computerised systems — the compliance surface into which AI-enabled recruitment, monitoring and data-management tools must fit. Applies to trials commencing after 31 March 2026, with the revised GCP effective 1 September 2026.",
           scores: { impact: 4, rigor: 3, foresight: 3 },
           topics: ["gcp", "regulatory", "data-mgmt", "harmonization"],
           history: [
+            { date: "2026-09-22", type: "update", note: "CDE issued the companion Guiding Principles for Computerised Systems and Electronic Data in Drug Clinical Trials (Announcement 2026 No. 44, effective on publication; https://www.cde.org.cn/main/news/viewInfoCommon/2c5d9c3f1afef1605b6a6d3a9df7b5ae). Written to implement E6(R3) and the 2026 GCP, it covers systems that generate, store, transmit, analyse and report trial data (EDC, randomisation/IRT, eTMF), with requirements on data reliability, risk management, validation, access control, audit trails and allocation of responsibilities between sponsor, investigator and site. It does not address AI specifically, so AI-enabled trial systems fall under these general computerised-system controls." },
             { date: "2026-09-01", type: "update", note: "Revised GCP takes effect, making E6(R3)-style risk-based quality management and computerised-system expectations the operative standard for trials in China." },
             { date: "2026-08", type: "update", note: "Verified during the August 2026 source reconciliation: NMPA's E6(R3)-aligned GCP is final, applies to trials commencing after 31 March 2026, and takes operative effect from 1 September 2026 — establishing the risk-based quality and computerised-system expectations that AI-enabled trial tooling must meet in China." },
             { date: "2026-05-21", type: "publish", note: "Announcement 2026 No. 50 issued the revised GCP implementing ICH E6(R3) and repealed the 2020 No. 57 announcement; applies to trials commencing after 31 March 2026." }
@@ -480,11 +593,12 @@ window.DATA = {
           type: "Regulatory Sandbox",
           status: "final",
           publishedAt: "2024-05-09",
-          updatedAt: "2026-06-09",
+          updatedAt: "2026-10-06",
           summary: "MHRA's first regulatory sandbox for AI as a Medical Device (AIaMD) — a collaborative environment (with the NHS, DHSC and UK Approved Bodies) to test real-world AI products, surface regulatory gaps and inform forthcoming AIaMD guidance. It is not a route to market, but a mechanism to build evidence for future UK AI-in-healthcare policy. Now funded through 2029 and moving from short-term pilots into a sustained testing programme.",
           scores: { impact: 4, rigor: 3, foresight: 4 },
           topics: ["regulatory", "gcp", "harmonization"],
           history: [
+            { date: "2026-10-06", type: "update", note: "Call for applications to Phase 3 opened alongside the government's response to the National Commission, with testing themes taken directly from the Commission's recommendations — closing the loop from sandbox evidence to policy and back into the next testing cohort." },
             { date: "2026-06-09", type: "update", note: "Phase 2 formally completed and its programme report published alongside a suite of simulation-workshop summaries. Phase 3 runs from April 2026 with priorities to be shaped by the National Commission's recommendations." },
             { date: "2026-05", type: "update", note: "Phase 2 completed with 7 innovators across 3 regulatory challenges (managing evolving AI, regulating AI diagnostics, post-market surveillance); phase 3 underway." },
             { date: "2026-04-08", type: "update", note: "DHSC confirmed multi-year funding — GBP 1.2 million per year for 2026-2029 (GBP 3.6 million over three years) — letting the programme scale beyond annual financial cycles into longer-term evaluation models." },
@@ -529,16 +643,33 @@ window.DATA = {
           title: "National Commission into the Regulation of AI in Healthcare — Research, Engagement and Call for Evidence Findings",
           url: "https://www.gov.uk/government/publications/national-commission-into-the-regulation-of-ai-in-healthcare-research-engagement-and-call-for-evidence-findings",
           type: "Evidence Report",
-          status: "consultation",
+          status: "final",
           publishedAt: "2026-06-11",
-          updatedAt: "2026-06-11",
+          updatedAt: "2026-09-10",
           summary: "Two reports forming the evidence base for the UK's forthcoming AI-in-healthcare regulatory framework: a research and engagement report and a summary of the Call for Evidence (760 respondents), drawing on public polling, surveys, deliberative research, an open call, a public Ask Me Anything session and insights from the AI Airlock. Ten key findings were identified. These are explicitly not the recommendations — the National Commission's final recommendations are due in late summer 2026, after which MHRA will consider implementation alongside the 10-Year Health Plan for England and the Life Sciences Sector Plan.",
           scores: { impact: 4, rigor: 4, foresight: 4 },
           topics: ["regulatory", "gcp", "harmonization"],
           history: [
+            { date: "2026-09-10", type: "update", note: "The evidence phase is closed: the Commission published its final recommendations (tracked as a separate entry), which build on these findings. This evidence base is now the reference for why each recommendation was made." },
             { date: "2026-06-11", type: "publish", note: "Both reports published by MHRA; described as one of the most comprehensive evidence bases to date on how AI is perceived, used and governed across the UK health system." },
             { date: "2026-02-02", type: "consultation", note: "Call for Evidence closed after roughly six weeks (launched 19 December 2025), attracting 760 responses from individuals and institutions." },
             { date: "2025-09-26", type: "publish", note: "MHRA launched the National Commission into the Regulation of AI in Healthcare as an independent, non-statutory advisory body, with monthly core-group meetings and recommendations due in 2026." }
+          ]
+        },
+        {
+          id: "mhra-national-ai-commission-recommendations",
+          title: "National Commission into the Regulation of AI in Healthcare: Recommendations for a Future Regulatory Framework",
+          url: "https://www.gov.uk/government/publications/national-commission-into-the-regulation-of-ai-in-healthcare-recommendations-for-a-future-regulatory-framework/national-commission-into-the-regulation-of-ai-in-healthcare-recommendations-for-a-future-regulatory-framework",
+          type: "Commission Report",
+          status: "final",
+          publishedAt: "2026-09-10",
+          updatedAt: "2026-10-06",
+          summary: "The independent Commission's final report, after a year-long UK-wide programme involving more than 12,000 people. Central conclusion: regulation and assurance of AI in healthcare must become more proportionate, lifecycle-based and system-wide. Its 44 recommendations are grouped under three pillars: proportionate lifecycle regulation (clearer qualification and classification of AI-enabled devices, risk-tailored oversight, flexible mechanisms for rapid iteration, stronger use of real-world evidence, staged authorisations and sandboxes); system-wide responsibility for the safe management of AI once deployed; and trust, transparency and predictability for patients and innovators. The scope is AI-enabled medical devices and their use in care rather than AI used to run drug trials, but it sets the UK's direction on lifecycle evidence, change control and post-market monitoring, which sponsors deploying AI tools in UK studies will meet.",
+          scores: { impact: 5, rigor: 4, foresight: 5 },
+          topics: ["regulatory", "gcp", "harmonization"],
+          history: [
+            { date: "2026-10-06", type: "update", note: "Government response accepted all 44 recommendations. First commitments: MHRA to issue draft guidance by December 2026 on managing changes to AI-enabled devices as they adapt; consultation on qualifying and classifying AI-enabled devices starting in 2027; exploration of staged authorisation pathways; and a full implementation roadmap with timelines and owners by Spring 2027. AI Airlock Phase 3 opened for applications the same day." },
+            { date: "2026-09-10", type: "publish", note: "Final recommendations published with an Easy Read version and a Welsh translation of the executive summary; a cross-government response was promised separately." }
           ]
         }
       ]
@@ -616,6 +747,21 @@ window.DATA = {
           history: [
             { date: "2026-06-08", type: "publish", note: "Project team announced on PMDA's What's New page and added to the Projects Across Multi-Offices listing; follows the January 2026 joint FDA-EMA principles and signals Japanese alignment with the emerging international direction." }
           ]
+        },
+        {
+          id: "pmda-genai-samd-review-points",
+          title: "Review Points for Software Medical Devices Using Generative AI (Draft)",
+          url: "https://www.pmda.go.jp/review-services/drug-reviews/about-reviews/devices/0058.html",
+          type: "Draft Review Points",
+          status: "consultation",
+          publishedAt: "2026-09-18",
+          updatedAt: "2026-09-18",
+          summary: "PMDA's first draft review framework for medical devices built on generative AI (LLMs and vision-language models that produce varied responses from free-text or voice input), issued while Japan has no review experience with such products. Its premise is that output uncertainty and variability make the conventional model — proving safety and effectiveness through pre-market evaluation alone — hard to apply, so assessment pairs pre-market review with mandatory post-market management. Pre-market, it looks at clinical usefulness, product performance at a given time and condition, stability and reproducibility across times and conditions, and confirmation that harmful outputs do not occur, with property-based testing (large volumes of auto-generated inputs to find counter-examples and statistically bound the range where required properties hold) and expert evaluation as core methods, plus a view on the place and limits of benchmark tests. Post-market, it expects periodic reporting on performance, adverse events and hallucinations, and human-factors-informed design and operation. It also addresses reliance on external foundation models, cloud services, APIs and retrieval-augmented generation. Device-focused, but the clearest regulator statement yet on how to evidence a generative-AI system whose outputs drift.",
+          scores: { impact: 4, rigor: 4, foresight: 5 },
+          topics: ["regulatory", "genai", "data-mgmt"],
+          history: [
+            { date: "2026-09-18", type: "consultation", note: "Draft (document dated 14 September 2026) published by PMDA's Review Center and opened for public comment until 17 March 2027 — a six-month window, longer than the other SaMD review-point drafts released on 1 July 2026." }
+          ]
         }
       ]
     },
@@ -628,7 +774,7 @@ window.DATA = {
       domain: "iqvia.com",
       category: "cro",
       intro: "A global clinical research and health-data company publishing applied white papers on AI in clinical trials.",
-      url: "https://www.iqvia.com/library/white-papers",
+      url: "https://www.iqvia.com/library",
       documents: [
         {
           id: "iqvia-ai-drug-development",
@@ -697,13 +843,13 @@ window.DATA = {
           url: "https://www.iqvia.com/library/insight-brief/reshaping-clinical-trial-workflows-agentification-of-tmfs",
           type: "Insight Brief",
           status: "final",
-          publishedAt: "2026",
-          updatedAt: "2026",
-          summary: "How agentic AI plus 'experts-in-the-loop' turns the Trial Master File from a manual, resource-intensive repository into an insight-generating asset — automating document ingestion, classification, quality control and compliance monitoring while preserving regulatory oversight and inspection readiness. Claimed effects: fewer errors, better TMF recency, and faster study start-up and site activation. Exact publication date to be verified.",
+          publishedAt: "2026-05-13",
+          updatedAt: "2026-05-13",
+          summary: "How agentic AI plus 'experts-in-the-loop' turns the Trial Master File from a manual, resource-intensive repository into an insight-generating asset — automating document ingestion, classification, quality control and compliance monitoring while preserving regulatory oversight and inspection readiness. Claimed effects: fewer errors, better TMF recency, and faster study start-up and site activation.",
           scores: { impact: 3, rigor: 3, foresight: 4 },
           topics: ["agentic", "doc-authoring", "data-mgmt", "gcp"],
           history: [
-            { date: "2026", type: "publish", note: "Insight brief published; describes an open-architecture approach that integrates with sponsor environments rather than requiring migration (exact date to be verified)." }
+            { date: "2026-05-13", type: "publish", note: "Insight brief published; describes an open-architecture approach that integrates with sponsor environments rather than requiring migration." }
           ]
         },
         {
@@ -719,6 +865,36 @@ window.DATA = {
           topics: ["data-mgmt", "agentic", "genai", "protocol-design", "scaling-roi"],
           history: [
             { date: "2026", type: "publish", note: "White paper published; positions standardized, continuously refreshed data as the precondition for AI-driven risk management and sponsor oversight (exact date to be verified)." }
+          ]
+        },
+        {
+          id: "iqvia-predictive-clinical-development",
+          title: "IQVIA Predictive Clinical Development — AI-Powered, Agentic Approach to Clinical Development",
+          url: "https://www.iqvia.com/newsroom/2026/09/iqvia-predictive-clinical-development-provides-sponsors-with-significant-efficiencies",
+          type: "Press Release",
+          status: "final",
+          publishedAt: "2026-09-03",
+          updatedAt: "2026-09-03",
+          summary: "IQVIA's launch of an AI-powered approach to clinical development that it says can bring therapies to patients up to two years faster by removing avoidable delays across the lifecycle. Claimed results: 33% faster study start-up; 1.7 times more patients recruited from AI-prioritised and Prime & Partner sites, with 42% higher enrollment rates; 50% faster data cleaning; and more than 45% less time between trial phases. It combines IQVIA's proprietary data, regulatory expertise and Healthcare-grade AI with technology from Anthropic, AWS, Databricks, Microsoft, NVIDIA, Palantir and Snowflake, orchestrated into agentic workflows. A commercial announcement: the figures are vendor-reported and not independently validated, but they show a large CRO now selling agent orchestration across the whole trial rather than point tools.",
+          scores: { impact: 4, rigor: 2, foresight: 4 },
+          topics: ["agentic", "site-selection", "recruitment", "data-mgmt", "rd-productivity", "scaling-roi"],
+          history: [
+            { date: "2026-09-03", type: "publish", note: "Announced by IQVIA (Research Triangle Park, NC); framed by Richard Staub, president of Research and Development Solutions, as making development faster, more predictable and of higher quality." }
+          ]
+        },
+        {
+          id: "iqvia-life-science-models",
+          title: "IQVIA Life Science Models — Purpose-Built Models for Clinical Outcome Prediction",
+          url: "https://www.iqvia.com/newsroom/2026/10/iqvia-launches-iqvia-life-science-models-to-help-life-sciences-companies",
+          type: "Press Release",
+          status: "final",
+          publishedAt: "2026-10-07",
+          updatedAt: "2026-10-07",
+          summary: "At TechIQ 2026 IQVIA launched IQVIA Life Science Models — a suite of purpose-built models combining proprietary expert content, domain knowledge and regulatory/compliance/privacy frameworks, built with NVIDIA Nemotron and AWS infrastructure. Capabilities highlighted for clinical development include study simulation and protocol optimisation (endpoints, eligibility, dose, sample size), digital twins and synthetic controls, and feeding trial predictions into real-world planning. IQVIA reports that in initial evaluation across 50 trials and 270 endpoints, 85% of predictions were on target or clinically close — vendor-reported, not independently validated. Extends the September Predictive Clinical Development launch by productising the underlying models sponsors can use to 'run the trial before running the trial.'",
+          scores: { impact: 4, rigor: 2, foresight: 4 },
+          topics: ["agentic", "in-silico", "protocol-design", "rd-productivity", "scaling-roi"],
+          history: [
+            { date: "2026-10-07", type: "publish", note: "Announced at TechIQ 2026; Pete Groves (EVP, AI & Technology Solutions) quoted on anticipating outcomes and increasing trial success." }
           ]
         }
       ]
@@ -822,6 +998,21 @@ window.DATA = {
           history: [
             { date: "2026", type: "publish", note: "Article published; argues agentic AI and LLMs make it feasible not only to automate labour-intensive processes but to attack problems previously considered intractable in trial design (exact date to be verified)." }
           ]
+        },
+        {
+          id: "zs-drug-development-structural-shifts",
+          title: "Drug Development: Structural Shifts Reshaping R&D",
+          url: "https://www.zs.com/insights/drug-development-transformation-industry-trends-pharma-r-and-d",
+          type: "Article",
+          status: "final",
+          publishedAt: "2026",
+          updatedAt: "2026",
+          summary: "Findings from six ZS R&D Leaders Exchange roundtables in 2026 with leaders from more than 20 biopharma companies across regulatory, technology, clinical innovation, clinical operations and biostatistics. Core diagnosis: R&D has become more technologically capable but not more connected — AI programmes worth more than USD 180 million a year and clinical activities shortened by up to four months exist, yet development costs and timelines barely move because gains stay isolated inside an operating model built for a simpler era. Five observations: science is outpacing the operating model; operations are straining under scientific complexity; AI is moving beyond pilots but scaling remains hard; leverage moves upstream, so in silico methods and digital twins should test population, endpoint, dose, feasibility and patient-burden assumptions before a protocol is fixed; and mission-control oversight with connected data improves development economics. Recommends simplifying workflows before automating them, embedding governance, and scaling AI through one coordinated transformation portfolio. Exact publication date to be verified.",
+          scores: { impact: 3, rigor: 3, foresight: 4 },
+          topics: ["scaling-roi", "in-silico", "protocol-design", "rd-productivity", "agentic"],
+          history: [
+            { date: "2026", type: "publish", note: "Article published; cites the joint EMA-FDA good AI practice principles and FDA's real-time clinical trials initiative as evidence that regulators are now enabling, not just tolerating, AI in development (exact date to be verified)." }
+          ]
         }
       ]
     },
@@ -910,6 +1101,21 @@ window.DATA = {
           topics: ["agentic", "protocol-design", "data-mgmt", "rd-productivity", "scaling-roi", "in-silico"],
           history: [
             { date: "2026-07", type: "publish", note: "Report published. Its central warning is organizational rather than technical: the change required to close R&D decision loops is routinely underestimated, and leaders must redesign workflows so that AI informs decisions rather than merely augmenting them. Recommends building a blueprint across all five decision points, then sequencing early wins against it." }
+          ]
+        },
+        {
+          id: "mck-ai-drug-discovery-what-matters-most",
+          title: "AI Drug Discovery: Focusing on What Matters Most",
+          url: "https://www.mckinsey.com/industries/life-sciences/our-insights/ai-drug-discovery-focusing-on-what-matters-most",
+          type: "Article",
+          status: "final",
+          publishedAt: "2026-09-21",
+          updatedAt: "2026-09-21",
+          summary: "By Alex Devereson, Erika Stanzl and Guang Yang, with Alex Peluffo, Alex Zhao, Mai Wang and Xin Wang. Maps AI maturity across the research value chain and argues investment has piled into molecule design — the stage with the most structured data and fastest assay feedback — while the binding constraint is identifying and validating the right disease mechanism. Evidence: 14 of the 15 largest pharma AI deals since 2023 sit in hit-to-lead; 2025 partnerships carried about USD 29.5 billion in headline value but only about USD 600 million upfront, and under 1% of milestone value from 2023-2024 deals had been paid by June 2026; AI drug-discovery funding reached USD 8.4 billion in 2025, roughly double 2023. Nine selected AI-enabled programmes reached preclinical or first-in-human milestones 15-80% faster than large-pharma medians, though the sample favours successful, well-publicised programmes. For clinical development, the point is that roughly 25% of Phase II/III failures originate in preclinical translation; McKinsey urges investing in preclinical-to-clinical data linkage and in generating proprietary perturbation and clinical data, warning that jumping from target ID straight to generative chemistry accelerates assets toward predictable downstream failure. Exact URL to be verified (mckinsey.com could not be reached from the reconciliation environment).",
+          scores: { impact: 4, rigor: 4, foresight: 4 },
+          topics: ["drug-discovery-success", "rd-productivity", "scaling-roi", "data-mgmt"],
+          history: [
+            { date: "2026-09-21", type: "publish", note: "Article published in McKinsey's Life Sciences insights; widely discussed for its contrast between faster discovery timelines and unchanged clinical attrition, a theme the authors reiterated in investor coverage in early October 2026." }
           ]
         }
       ]
@@ -1040,7 +1246,7 @@ window.DATA = {
       domain: "accenture.com",
       category: "consultancy",
       intro: "A global technology and consulting firm advising on reinventing life-sciences R&D with generative AI.",
-      url: "https://www.accenture.com/us-en/insights/life-sciences",
+      url: "https://www.accenture.com/us-en/industries/life-sciences-index",
       documents: [
         {
           id: "accenture-reinventing-life-sciences-genai",
@@ -1281,6 +1487,21 @@ window.DATA = {
             { date: "2026-07-20", type: "update", note: "Publisher listing re-verified and the edition date pinned down: last updated 20 July 2026, study period 2021-2034, estimated year 2026. Regional and offering detail confirmed — North America $1.98B in 2025 and $2.87B in 2026, the US at $2.64B in 2026, and software/platforms at 59.9% of the offering split." },
             { date: "2026", type: "publish", note: "Report published with a 2026-2034 forecast period and 2021-2024 historical period." }
           ]
+        },
+        {
+          id: "rm-ai-in-clinical-trials-market-2040",
+          title: "AI in Clinical Trials Market, till 2040 (Research and Markets)",
+          url: "https://www.researchandmarkets.com/reports/5852457/ai-in-clinical-trials-market-till",
+          type: "Market Report",
+          status: "final",
+          publishedAt: "2026-09-25",
+          updatedAt: "2026-09-25",
+          summary: "Research and Markets listing added 25 September 2026 (report ID 5852457): projects the global AI-in-clinical-trials market from USD 2.09 billion in 2026 to USD 18.62 billion by 2040 at a 17.0% CAGR. Segments by trial phase, therapeutic area, end user and geography; includes use-case vignettes (e.g. sponsor–CRO and health-system partnerships). Sits far below the February 2026 Business Research Company edition's 2030 forecast ($54.71B) but extends the horizon — another reminder that market definitions and scopes diverge sharply across publishers.",
+          scores: { impact: 2, rigor: 3, foresight: 3 },
+          topics: ["market"],
+          history: [
+            { date: "2026-09-25", type: "publish", note: "Announced via GlobeNewswire and added to ResearchAndMarkets.com; 2040 forecast horizon distinguishes it from the hub's February 2026 report (2030 endpoint)." }
+          ]
         }
       ]
     },
@@ -1295,6 +1516,21 @@ window.DATA = {
       intro: "Peer-reviewed literature and analyses from independent research institutes, kept separate here because their evidence standards and incentives differ from regulator, CRO, vendor and consultancy output.",
       url: "https://www.nature.com/nrclinonc",
       documents: [
+        {
+          id: "eclinm-ai-trials-evidence-gaps",
+          title: "Artificial Intelligence in Clinical Trials — State of the Evidence, Gaps, and Next Steps",
+          url: "https://doi.org/10.1016/j.eclinm.2026.104196",
+          type: "Peer-Reviewed Review",
+          status: "final",
+          publishedAt: "2026-09-12",
+          updatedAt: "2026-09-12",
+          summary: "By Antonis A. Armoundas, Constantine Tarabanis and Joseph Loscalzo (eClinicalMedicine, DOI 10.1016/j.eclinm.2026.104196). Defines two non-equivalent roles for AI in trials: AI-as-intervention (the model output is part of the assigned intervention and needs prospective evaluation with prespecified estimands and protocol-level oversight) versus AI-for-trial-operations (judged on workflow accuracy, decision impact, transportability and safety, with stricter change control when endpoints or inference are affected). Reviews evidence across safety, efficacy, operational risk prediction, network medicine, digital health technologies, retrieval-augmented generation and agentic workflows, aligned to ICH E6(R3), ICH E9(R1) and emerging structured-protocol standards. Complements the Nature Reviews oncology piece with a cross-therapeutic governance frame and explicit mapping to FDA-EMA good AI practice and the EU AI Act / EMA reflection paper where regulatory impact extends beyond conventional reporting guidance.",
+          scores: { impact: 4, rigor: 5, foresight: 5 },
+          topics: ["regulatory", "gcp", "agentic", "genai", "protocol-design", "data-mgmt", "harmonization"],
+          history: [
+            { date: "2026-09-12", type: "publish", note: "Published online after acceptance 25 August 2026; open access under CC BY-NC-ND 4.0." }
+          ]
+        },
         {
           id: "nrco-ai-augmentation-oncology-trials",
           title: "AI-based augmentation of oncology clinical trials (Nature Reviews Clinical Oncology)",

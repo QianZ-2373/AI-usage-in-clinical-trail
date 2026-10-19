@@ -1,0 +1,11 @@
+This folder is the primary working copy for the Clinical AI Intelligence Observatory HTML tool.
+
+Future updates (data.js refresh, link fixes, new articles) should be made HERE.
+
+Entry point: Open this_Html tool.html
+Data: data.js | App: app.js
+
+Canonical path:
+C:\Users\U1035774\OneDrive - Sanofi\桌面\AI Clinical Trials Resource Hub
+
+(An older copy may still exist under OneDrive Download; prefer this Desktop folder.)
